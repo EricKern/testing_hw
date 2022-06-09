@@ -97,6 +97,9 @@ int main(int argc, char *argv[])
     int size_n = 1000;
     chCommandLineGet<int>(&size_n, "n", argc, argv);
 
+    // std::vector<ValType> in_mat(size_m * size_n);
+    // std::vector<ValType> in_vec(size_n);
+    // std::vector<ValType> out_vec(size_m);
     std::vector<ValType, default_init_allocator<ValType>> in_mat(size_m * size_n);
     std::vector<ValType, default_init_allocator<ValType>> in_vec(size_n);
     std::vector<ValType, default_init_allocator<ValType>> out_vec(size_m);
