@@ -1,0 +1,21 @@
+spack load likwid
+
+# copy benchmark with cache coherency on single thread domain
+srun -p bench likwid-bench  -t copy -w S0:1GB
+
+# copy benchmark with cache coherency on two thread domains
+srun -p bench likwid-bench  -t copy -w S0:1GB -w S1:1GB
+
+
+# copy benchmark with both input vectors in one numa domain
+srun -p bench likwid-bench  -t copy -w S1:1GB-0:S0,1:S0  -w S0:1GB
+
+
+# copy benchmark with non-temporal stores (avoid cache entry)
+srun -p bench likwid-bench  -t copy_mem -w S1:1GB  -w S0:1GB
+
+# load benchmark
+srun -p bench likwid-bench  -t load -w S0:1GB -w S1:1GB
+
+# store benchmark
+srun -p bench likwid-bench  -t store -w S0:1GB -w S1:1GB
